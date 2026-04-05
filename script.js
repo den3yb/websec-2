@@ -1,6 +1,6 @@
 import { cities } from './citys.js';
 
-const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc1MzkxNzI5LCJpYXQiOjE3NzUzOTE0MjksImp0aSI6IjFiZjk5MzE5ZmIzMjRjYjZhYTdmNmJmMjc5YWU4N2I3IiwidXNlcl9pZCI6IjM2NjUifQ.amfYTxpIC9cUXZXjWm9PXdUqjvgqn_1Wpcm9jc7zfVc'; 
+const API_KEY = '65186e2b65ebe57833a77ec14b1ac47e'; 
 const API_URL = 'https://api.openweathermap.org/data/2.5/forecast';
 
 const map = L.map('map').setView([55.75, 37.61], 5);
@@ -71,10 +71,6 @@ async function fetchAndShowWeather(city) {
     destroyCharts();
 
     try {
-        // 🔁 АДАПТАЦИЯ ПОД projecteol.ru:
-        // 1. Изучи их документацию: какие параметры нужны в запросе
-        // 2. Какой формат ответа (поля для температуры, осадков, ветра)
-        // 3. Есть ли ограничения по частоте запросов (rate limit)
         
         const response = await fetch(
             `${API_URL}?lat=${city.lat}&lon=${city.lon}&appid=${API_KEY}&units=metric&lang=ru`
@@ -95,7 +91,6 @@ async function fetchAndShowWeather(city) {
 }
 
 function renderCharts(cityName, weatherData) {
-    // Подготовка общих данных
     const labels = weatherData.map(item => {
         const date = new Date(item.dt * 1000);
         return `${date.getDate()}.${date.getMonth()+1} ${String(date.getHours()).padStart(2,'0')}:00`;
@@ -105,7 +100,6 @@ function renderCharts(cityName, weatherData) {
     charts.temp = createChart('temp-chart', 'Температура (°C)', temps, labels, 'rgb(255, 99, 132)');
 
     const precip = weatherData.map(item => item.pop ? item.pop * 100 : 0); // вероятность в %
-    // Если API возвращает фактические мм: item.rain?.3h || 0
     charts.precip = createChart('precip-chart', 'Осадки (вероятность, %)', precip, labels, 'rgb(54, 162, 235)');
 
     const wind = weatherData.map(item => item.wind.speed);
