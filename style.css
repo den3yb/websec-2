@@ -137,6 +137,8 @@ main {
     background: #fafafa;
     border-radius: 8px;
     padding: 10px;
+    height: 250px;
+    max-height: 300px;
 }
 
 /* Responsive Design */
