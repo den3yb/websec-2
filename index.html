@@ -1,57 +1,54 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Прогноз погоды на карте</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Карта погоды</title>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="page-header">
+        <h1>Прогноз погоды</h1>
+        <div class="search-container">
+          <input type="text" id="cityInput" placeholder="Введите город..." />
+          <button id="findBtn">Найти</button>
+        </div>
+      </header>
 
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <div class="container">
-        <header>
-            <h1>Прогноз погоды</h1>
-            <div class="search-box">
-                <input type="text" id="city-search" placeholder="Введите название города...">
-                <button id="search-btn">Найти</button>
-            </div>
-        </header>
-
-        <main>
-            <div id="map"></div>
-            <div id="loader" class="loader hidden">
-                <div class="spinner"></div>
-                <p>Загрузка прогноза...</p>
-            </div>
-            <div id="weather-modal" class="modal hidden">
-                <div class="modal-content">
-                    <span class="close-btn">&times;</span>
-                    <h2 id="modal-city-name">Город</h2>
-                    <div class="charts-container">
+      <main class="content-area">
+        <div id="mapContainer"></div>
+        <div id="loadingIndicator" class="loader hidden">
+          <div class="spinner"></div>
+          <p>Загрузка данных...</p>
+        </div>
+        <div id="weatherModal" class="modal hidden">
+          <div class="modal-body">
+            <span class="closeIcon">&times;</span>
+            <h2 id="modalTitle">Город</h2>
+            <div class="charts-wrapper">
                         <div class="chart-wrapper">
                             <h3 class="chart-title">Температура</h3>
-                            <canvas id="temp-chart"></canvas>
+                            <canvas id="chartTemp"></canvas>
                         </div>
                         <div class="chart-wrapper">
                             <h3 class="chart-title">Осадки (вероятность)</h3>
-                            <canvas id="precip-chart"></canvas>
+                            <canvas id="chartPrecip"></canvas>
                         </div>
                         <div class="chart-wrapper">
                             <h3 class="chart-title">Ветер</h3>
-                            <canvas id="wind-chart"></canvas>
+                            <canvas id="chartWind"></canvas>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </main>
+          </div>
+        </div>
+      </main>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script type="module" src="citys.js"></script>
     <script type="module" src="script.js"></script>
-</body>
+  </body>
 </html>
