@@ -64,28 +64,42 @@ function destroyCharts() {
 async function fetchAndShowWeather(city) {
     const loader = document.getElementById('loader');
     const cityNameEl = document.getElementById('modal-city-name');
-    
+
+    console.log('Загрузка погоды для города:', city.name, city.lat, city.lon);
+
     cityNameEl.textContent = city.name;
     modal.classList.remove('hidden');
-    loader.classList.add('active');
+    if (loader) loader.classList.add('active');
     destroyCharts();
 
     try {
-        
-        const response = await fetch(
-            `${API_URL}?lat=${city.lat}&lon=${city.lon}&appid=${API_KEY}&units=metric&lang=ru`
-        );
-        
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const apiUrl = `${API_URL}?lat=${city.lat}&lon=${city.lon}&appid=${API_KEY}&units=metric&lang=ru`;
+        console.log('Запрос к API:', apiUrl);
+
+        const response = await fetch(apiUrl);
+
+        console.log('Статус ответа:', response.status, response.statusText);
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Ошибка API:', errorText);
+            throw new Error(`HTTP ${response.status}: ${errorText}`);
+        }
+
         const data = await response.json();
-        
-        loader.classList.remove('active');
+        console.log('Полученные данные:', data);
+
+        if (!data.list || data.list.length === 0) {
+            throw new Error('Нет данных прогноза');
+        }
+
+        if (loader) loader.classList.remove('active');
         renderCharts(city.name, data.list);
-        
+
     } catch (error) {
         console.error('Ошибка загрузки погоды:', error);
-        loader.classList.remove('active');
-        alert('Не удалось загрузить прогноз. Проверьте интернет или ключ API.');
+        if (loader) loader.classList.remove('active');
+        alert('Не удалось загрузить прогноз. Проверьте интернет или ключ API.\nОшибка: ' + error.message);
         modal.classList.add('hidden');
     }
 }
