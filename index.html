@@ -32,9 +32,18 @@
                     <span class="close-btn">&times;</span>
                     <h2 id="modal-city-name">Город</h2>
                     <div class="charts-container">
-                        <canvas id="temp-chart"></canvas>
-                        <canvas id="precip-chart"></canvas>
-                        <canvas id="wind-chart"></canvas>
+                        <div class="chart-wrapper">
+                            <h3 class="chart-title">Температура</h3>
+                            <canvas id="temp-chart"></canvas>
+                        </div>
+                        <div class="chart-wrapper">
+                            <h3 class="chart-title">Осадки (вероятность)</h3>
+                            <canvas id="precip-chart"></canvas>
+                        </div>
+                        <div class="chart-wrapper">
+                            <h3 class="chart-title">Ветер</h3>
+                            <canvas id="wind-chart"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>

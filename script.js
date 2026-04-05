@@ -151,7 +151,7 @@ function createChart(canvasId, label, data, labels, color) {
                 }
             },
             plugins: {
-                legend: { display: false },
+                legend: { display: true, position: 'top' },
                 tooltip: { mode: 'index', intersect: false }
             }
         }
