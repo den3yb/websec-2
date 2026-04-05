@@ -1,11 +1,5 @@
-const citiesData = [
-    { name: "Москва", lat: 55.7558, lon: 37.6173, population: 12655050 },
-    { name: "Санкт-Петербург", lat: 59.9343, lon: 30.3351, population: 5384342 },
-    { name: "Новосибирск", lat: 55.0084, lon: 82.9357, population: 1625631 },
-    { name: "Екатеринбург", lat: 56.8389, lon: 60.6057, population: 1493749 },
-    { name: "Казань", lat: 55.7961, lon: 49.1064, population: 1257391 },
-    { name: "Нижний Новгород", lat: 56.2965, lon: 43.9361, population: 1252236 },
-];
+import { cities } from './citys.js';
+
 const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc1MzkxNzI5LCJpYXQiOjE3NzUzOTE0MjksImp0aSI6IjFiZjk5MzE5ZmIzMjRjYjZhYTdmNmJmMjc5YWU4N2I3IiwidXNlcl9pZCI6IjM2NjUifQ.amfYTxpIC9cUXZXjWm9PXdUqjvgqn_1Wpcm9jc7zfVc'; 
 const API_URL = 'https://api.openweathermap.org/data/2.5/forecast';
 

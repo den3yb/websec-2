@@ -1,4 +1,4 @@
-export const citiesData = [
+export const cities = [
     { name: "Москва", lat: 55.7558, lon: 37.6173, population: 12655050 },
     { name: "Санкт-Петербург", lat: 59.9343, lon: 30.3351, population: 5384342 },
     { name: "Новосибирск", lat: 55.0084, lon: 82.9357, population: 1625631 },
